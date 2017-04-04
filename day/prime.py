@@ -1,10 +1,20 @@
-def prime_gen(n):
+import math
+def prime_test(n, primeList = []):
     '''
     input: n integer
-    output: k where k is the i th prime number in range (0, n)
+    output: boolean True if prime false otherwise
     '''
-    pass
+    if n < 2:
+       return False
+    for prime in primeList:
+        if n % prime == 0:
+            return False
+        if math.sqrt(n) < prime:
+            break
+    return True
 
+
+    return
 
 def prime_numbers(n):
     '''
