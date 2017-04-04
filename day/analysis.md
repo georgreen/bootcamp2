@@ -19,7 +19,7 @@
 
 <br /> * T(n) = c1 * 1 + c2 * 1 + c3 * 1 + c4 * 1 + c5 * n + c6 * c + c7 * n + c8 * 1 <br />
        * T(n) = c1 + c2 + c3 + c4 + c5n + c6c + c7n + c8 <br />
-       *  *Drop constants*
-       *T(n) = c7n + c5n
-       * *Take dominat factor as n scales*
+       *  *Drop constants* <br />
+       *  T(n) = c7n + c5n   <br />
+       * *Take dominat factor as n scales* <br />
        * T(n) = O(f(n))
