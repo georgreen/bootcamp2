@@ -23,3 +23,4 @@
        *  T(n) = c7n + c5n   <br />
        * *Take dominat factor as n scales* <br />
        * T(n) = O(f(n))
+       * Prime is Linear
