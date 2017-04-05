@@ -1,7 +1,7 @@
 
 import requests
 
-#logic 
+#logic
 def lookup(symbol):
     '''
     looks up if  a symbol is available
@@ -54,6 +54,39 @@ def user_input(message):
     return input(message);
 
 #User interface
+def displayLookup(data):
+    displayMessage("PLEASE NOTE THE SYMBOL *THIS CAN BE USED TO GET QUOTES!")
+    padding = 50
+    half_padding = padding // 2
+    quater_padding = padding // 4
+    print("_" * 150)
+    print("|"  + " " * half_padding + str("NAME") + " " * half_padding + "|" +" " * half_padding+ str("SYMBOL") + " " * half_padding + "|" + " " * 6 + "Location")
+    print("_" * 150)
+    if data == None:
+        print("NO INFO SORRY :-(")
+    else:
+
+        for info in data:
+            side_padd_name = (padding + 4  - len(info['Name'])) // 2
+            side_padd_symbol = (padding + 6 - len(info['Symbol'])) // 2
+            side_padd_location = (padding + 7 - len(info['Exchange'])) // 2
+            print("| "  + " " * side_padd_name + info['Name'] +  " " * side_padd_name +"|"  + " " * side_padd_symbol + info['Symbol'] +" " * side_padd_symbol + "|" + " " * side_padd_location +info['Exchange'])
+
+
+def displayQoute(data):
+    if data == None:
+        print(" NOTHING TO DISPLAY HERE :-)")
+    else:
+        padding = 40
+        half_padding = padding // 2
+        print("_" * 100)
+        print("|"  + " " * half_padding + "NAME" + " " * half_padding + "|" +" " * half_padding+ "PRICE" )
+        print("_" * 100)
+        side_padd_name = (padding + 4 - len(data['Name'])) // 2
+        side_padd_price = 10
+        print("|" + " " * side_padd_name + data['Name'] + " " * side_padd_name + "|" + " " * side_padd_price + str(data['LastPrice']) )
+
+
 def displayError(messgae = ''):
     '''
     display error message
@@ -88,8 +121,14 @@ def main():
 
         if user_in == '1':
             symbol = user_input("Please Input a Symbol: ")
+            data = lookup(symbol)
+            displayLookup(data)
+            user_input("Press any Key to continue: ")
         elif user_in == '2':
             symbol = user_input("please Input a Symbol: ")
+            data = quote(symbol)
+            displayQoute(data)
+            user_input("Press any Key to continue: ")
         else:
             displayMessage("Goodbye! Thanks for using Qoutes!")
             break
