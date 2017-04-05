@@ -5,9 +5,7 @@ class BinarySearch(list):
     creates a list with length elements
     '''
     def __init__(self,length_list, step_list):
-        self.append(step_list)
-        for i in range(1, length_list):
-            self.append(self[len(self) - 1] + step_list)
+        self.extend(list(range(step_list, (length_list * step_list) + 1, step_list)))
         self.length = length_list
 
     def search(self, needle):
