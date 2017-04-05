@@ -55,6 +55,9 @@ def user_input(message):
 
 #User interface
 def displayLookup(data):
+    '''
+    display lookup data
+    '''
     displayMessage("PLEASE NOTE THE SYMBOL *THIS CAN BE USED TO GET QUOTES!")
     padding = 50
     half_padding = padding // 2
@@ -74,13 +77,17 @@ def displayLookup(data):
 
 
 def displayQoute(data):
-    if data == None:
+    '''
+    display quote data
+    '''
+    
+    if data == None or 'Name' not in data:
         print(" NOTHING TO DISPLAY HERE :-)")
     else:
         padding = 40
         half_padding = padding // 2
         print("_" * 100)
-        print("|"  + " " * half_padding + "NAME" + " " * half_padding + "|" +" " * half_padding+ "PRICE" )
+        print("|"  + " " * half_padding + "NAME" + " " * half_padding + "|" +" " * half_padding+ "PRICE IN $" )
         print("_" * 100)
         side_padd_name = (padding + 4 - len(data['Name'])) // 2
         side_padd_price = 10
@@ -112,6 +119,7 @@ def displayMenu():
 #entry point
 def main():
     '''
+    runs' program 
     '''
     displayMessage("WELCOME TO Qoutes !")
 
