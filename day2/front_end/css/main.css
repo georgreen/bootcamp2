@@ -22,6 +22,7 @@ body {
     margin-bottom: 20px;
     display: flex; flex-wrap: wrap;
 }
+
 .float-left{
     position: relative;
     left: 80%
@@ -40,7 +41,7 @@ body {
 }
 .float-left-footer{
     position: relative;
-    left: 60%;
+    left: 55%;
 }
 .float-input-center{
     position: relative;

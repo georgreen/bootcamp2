@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
+import sys
 
 #logic
 def lookup(symbol):
@@ -39,7 +40,7 @@ def request(url):
         return requests.get(url)
     except Exception:
         displayError(" Occured while connecting to URL. Please Check You Internet Connection")
-        return None
+        return stop("Program stopped.")
 
 def analyseData(response):
     '''
@@ -52,7 +53,19 @@ def user_input(message):
     '''
     promt's user for input
     '''
-    return input(message);
+    try:
+        displayMessage(message)
+        user_in = sys.stdin.readline()
+        return user_in[: -1]
+    except Exception:
+        displayError("Error while taking user input.")
+    return stop(code = -1)
+def stop(message = '', code = 0):
+    '''
+    halt's program printing a message on console
+    '''
+    print(message)
+    quit(code)
 
 #User interface
 def displayLookup(data):
@@ -134,10 +147,15 @@ def main():
             displayLookup(data)
             user_input("Press any Key to continue: ")
         elif user_in == '2':
-            symbol = user_input("please Input a Symbol: ")
-            data = quote(symbol)
-            displayQoute(data)
-            user_input("Press any Key to continue: ")
+            while(True):
+                symbol = user_input("please Input a Symbol: ")
+                data = quote(symbol)
+                if data.get('Status') == None:
+                    displayMessage("Unsussefull: Symbol not found, Please try again")
+                else:
+                    displayQoute(data)
+                    user_input("Press any Key to continue: ")
+                    break
         else:
             displayMessage("Goodbye! Thanks for using Qoutes!")
             break
