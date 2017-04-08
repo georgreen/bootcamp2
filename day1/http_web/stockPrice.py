@@ -86,7 +86,7 @@ def displayLookup(data):
         for info in data:
             side_padd_name = (padding + 4  - len(info['Name'])) // 2
             side_padd_symbol = (padding + 6 - len(info['Symbol'])) // 2
-            side_padd_location = (padding + 7 - len(info['Exchange'])) // 2
+            side_padd_location  = -7 + (padding  - len(info['Exchange'])) // 2
             print("| "  + " " * side_padd_name + info['Name'] +  " " * side_padd_name +"|"  + " " * side_padd_symbol + info['Symbol'] +" " * side_padd_symbol + "|" + " " * side_padd_location +info['Exchange'])
 
 
@@ -94,7 +94,7 @@ def displayQoute(data):
     '''
     display quote data
     '''
-    
+
     if data == None or 'Name' not in data:
         print(" NOTHING TO DISPLAY HERE :-)")
     else:
@@ -133,9 +133,9 @@ def displayMenu():
 #entry point
 def main():
     '''
-    runs' program 
+    runs' program
     '''
-    displayMessage("WELCOME TO Qoutes !")
+    displayMessage("WELCOME TO Qoutes: Enter a company symbol to look up it's Share price in Dollars!")
 
     while(True):
         displayMenu()
@@ -151,7 +151,7 @@ def main():
                 symbol = user_input("please Input a Symbol: ")
                 data = quote(symbol)
                 if data.get('Status') == None:
-                    displayMessage("Unsussefull: Symbol not found, Please try again")
+                    displayMessage("Symbol not found, Please try again.USE LOOK UP -> select 1, TO FIND VALID SYMBOLS")
                 else:
                     displayQoute(data)
                     user_input("Press any Key to continue: ")
